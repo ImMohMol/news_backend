@@ -1,7 +1,7 @@
 package com.news.news.configuration;
 
 import com.news.news.repository.IUserRepository;
-import com.news.news.utils.ConstantRepository;
+import com.news.news.utils.Message;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +22,7 @@ public class ApplicationConfiguration {
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> this.userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException(ConstantRepository.USER_NOT_FOUND_MESSAGE));
+                .orElseThrow(() -> new UsernameNotFoundException(Message.USER_NOT_FOUND));
     }
 
     @Bean
