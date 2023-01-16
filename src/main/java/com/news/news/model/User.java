@@ -11,12 +11,12 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Entity
+@Table(name = "tb_user")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
-@Table(name = "tb_user")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,11 +27,7 @@ public class User implements UserDetails {
     private String lastName;
     @Column(nullable = false)
     private int age;
-    @Min(value = 6, message = "Username is too short!")
-    @Max(value = 100, message = "Username is too long!")
     private String username;
-    @Min(value = 6, message = "Password is too short!")
-    @Max(value = 100, message = "Password is too long!")
     private String password;
 
     @Override
