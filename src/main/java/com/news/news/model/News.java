@@ -1,5 +1,6 @@
 package com.news.news.model;
 
+import com.news.news.model.enums.NewsCategory;
 import jakarta.persistence.*;
 import lombok.*;
 
