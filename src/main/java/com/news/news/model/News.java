@@ -1,6 +1,5 @@
 package com.news.news.model;
 
-import com.news.news.model.enums.NewsCategory;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,8 +18,8 @@ public class News {
     private String title;
     @Column(nullable = false)
     private String body;
-    @Column(unique = true, nullable = false)
-    @Enumerated(EnumType.STRING)
-    private NewsCategory category;
+    @OneToOne()
+    @JoinColumn(unique = true, nullable = false)
+    private Category category;
     private Long numberOfVisits = 0L;
 }

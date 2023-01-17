@@ -1,14 +1,14 @@
 package com.news.news.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_user")
@@ -29,6 +29,8 @@ public class User implements UserDetails {
     private int age;
     private String username;
     private String password;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<UserSelectedCategories> selectedCategories;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
