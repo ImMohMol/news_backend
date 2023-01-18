@@ -18,8 +18,6 @@ public class Category {
     private Long id;
     @Column(unique = true, nullable = false)
     private String name;
-    @OneToOne()
-    private News news;
     @OneToMany(mappedBy = "selectedCategory", fetch = FetchType.LAZY)
     private Set<UserSelectedCategories> user;
 }
