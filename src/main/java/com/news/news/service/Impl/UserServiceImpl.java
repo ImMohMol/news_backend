@@ -3,6 +3,7 @@ package com.news.news.service.Impl;
 import com.news.news.model.Category;
 import com.news.news.model.User;
 import com.news.news.model.dto.CreateUserDTO;
+import com.news.news.model.dto.SelectMultipleCategoriesDTO;
 import com.news.news.repository.IUserRepository;
 import com.news.news.service.ICategoryService;
 import com.news.news.service.IUserCategoryService;
@@ -30,6 +31,7 @@ public class UserServiceImpl implements IUserService {
                 .selectedCategories(new HashSet<>())
                 .build();
         this.userRepository.save(user);
+
         return user;
     }
 
@@ -43,6 +45,18 @@ public class UserServiceImpl implements IUserService {
         User user = this.userRepository.findByUsername(username).orElseThrow();
         Category category = this.categoryService.findByName(categoryName);
         this.userCategoryService.addCategoryForUser(user, category);
+
         return category;
+    }
+
+    @Override
+    public boolean selectMultipleCategoriesForUser(String username, SelectMultipleCategoriesDTO categoriesDTO) {
+        User user = this.userRepository.findByUsername(username).orElseThrow();
+        categoriesDTO.getCategoriesName().forEach(s -> {
+            Category category = categoryService.findByName(s);
+            userCategoryService.addCategoryForUser(user, category);
+        });
+
+        return true;
     }
 }
