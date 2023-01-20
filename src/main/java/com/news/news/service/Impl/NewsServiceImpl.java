@@ -6,7 +6,7 @@ import com.news.news.model.dto.CreateNewsDTO;
 import com.news.news.model.dto.UpdateNewsDTO;
 import com.news.news.repository.INewsRepository;
 import com.news.news.service.ICategoryService;
-import com.news.news.service.INewService;
+import com.news.news.service.INewsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class NewsServiceImpl implements INewService {
+public class NewsServiceImpl implements INewsService {
     private final INewsRepository newsRepository;
     private final ICategoryService categoryService;
 
@@ -45,7 +45,7 @@ public class NewsServiceImpl implements INewService {
     }
 
     @Override
-    public News deleteDTO(String title) {
+    public News delete(String title) {
         News news = this.newsRepository.findByTitle(title).orElseThrow();
         this.newsRepository.delete(news);
 

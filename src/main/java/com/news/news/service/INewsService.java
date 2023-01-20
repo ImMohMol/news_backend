@@ -6,12 +6,12 @@ import com.news.news.model.dto.UpdateNewsDTO;
 
 import java.util.List;
 
-public interface INewService {
+public interface INewsService {
     News add(CreateNewsDTO createNewsDTO);
 
     boolean update(UpdateNewsDTO updateNewsDTO);
 
-    News deleteDTO(String title);
+    News delete(String title);
 
     List<News> getAll();
 }
